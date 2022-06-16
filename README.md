@@ -10,9 +10,9 @@
 ## Результаты
 Для входных данных, взятых из книги, указанной выше, получаются следующие графики траекторий
 
-![trajectoryGraphic](https://user-images.githubusercontent.com/29752752/174099681-23cf0617-07d6-415a-8dd8-ac910b192629.png)
-![positionGraphic](https://user-images.githubusercontent.com/29752752/174099710-7d0313ef-4e4b-49b7-95bd-a940d00de993.png)
-![velocityGraphic](https://user-images.githubusercontent.com/29752752/174099726-67f9f19d-ad73-4cc9-a593-71dd19b8d5b3.png)
+![trajectoryGraphic](https://user-images.githubusercontent.com/29752752/174132166-a8a103ab-e538-44a3-ae1d-01183ff4ee0d.png)
+![positionGraphic](https://user-images.githubusercontent.com/29752752/174132172-f083eaf2-4219-4116-a41d-f08e4246c589.png)
+![velocityGraphic](https://user-images.githubusercontent.com/29752752/174132183-8b475f91-79b2-4406-81a3-06ba58e29a48.png)
 
 ## Как начать работу
 Достаточно иметь на компьютере Java и SDK (к примеру corretto-11). Склонировать репозиторий к себе на устройство (с помощью IntelliJ IDEA). Указать путь сохранения графиков в константу ```PATH```, находящуюся в ```Main.kt```. Можно изменить входные данные по необходимости (переменная ```data```). Результатом работы программы будут файлы формата .png с изображением траекторий 
