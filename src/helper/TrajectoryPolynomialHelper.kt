@@ -25,19 +25,34 @@ class TrajectoryPolynomialHelper(
      */
     fun createPolynomial(): (time: Double) -> Pair<Double, Double> {
         return { t ->
-            var i = 0
-            while (t > timeMomentsSortedList[i]) {
-                ++i
-                if (i == timeMomentsSortedList.size) {
-                    throw IllegalArgumentException("Time is out of range")
-                }
+            var k = 0
+            for (i in 0 until timeMomentsSortedList.size - 1) {
+                if (t in timeMomentsSortedList[i]..timeMomentsSortedList[i + 1]) k = i
             }
 
-            if (i == timeMomentsSortedList.size - 1) --i
+            val deltaT = t - timeMomentsSortedList[k]
 
-            val coeff = polynomialMatrix[i]
+            val coeff = polynomialMatrix[k]
 
-            coeff[0] * t.pow(3) + coeff[1] * t.pow(2) + coeff[2] * t + coeff[3]
+            coeff[3] * deltaT.pow(3) + coeff[2] * deltaT.pow(2) + coeff[1] * deltaT + coeff[0]
+        }
+    }
+
+    /**
+     * @return Лямбда, которая является производной полинома траектории и содержит ссылку на хелпер
+     */
+    fun createDiffPolynomial(): (time: Double) -> Pair<Double, Double> {
+        return { t ->
+            var k = 0
+            for (i in 0 until timeMomentsSortedList.size - 1) {
+                if (t in timeMomentsSortedList[i]..timeMomentsSortedList[i + 1]) k = i
+            }
+
+            val deltaT = t - timeMomentsSortedList[k]
+
+            val coeff = polynomialMatrix[k]
+
+            3 * coeff[3] * deltaT.pow(2) + 2 * coeff[2] * deltaT + coeff[1]
         }
     }
 }
