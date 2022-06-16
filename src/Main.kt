@@ -35,6 +35,10 @@ fun main() {
 
     // Результат полинома для всех t
     val result = mutableListOf<Pair<Double, Pair<Double, Double>>>()
+    // Ключевые точки
+    val keyPoints = MutableList(data.size) {
+        data[it].timeMoment to polynomial.invoke(data[it].timeMoment)
+    }
     // Результат производной полинома для всех t
     val resultDiff = mutableListOf<Pair<Double, Pair<Double, Double>>>()
 
@@ -44,10 +48,25 @@ fun main() {
         t += step
     }
 
+    result.addAll(keyPoints)
+    result.sortWith { o1, o2 ->
+        when {
+            o1.first == o2.first -> {
+                0
+            }
+            o1.first > o2.first -> {
+                1
+            }
+            else -> {
+                -1
+            }
+        }
+    }
+
     // Рисуем графики
-    drawTrajectoryGraphic(result.map { it.second }, PATH)
-    drawPositionGraphic(result, PATH)
-    drawVelocityGraphic(resultDiff, PATH)
+    drawTrajectoryGraphic(result.map { it.second }, PATH, keyPoints.map { it.second })
+    drawPositionGraphic(result, PATH, keyPoints.map { it.first })
+    drawVelocityGraphic(resultDiff, PATH, keyPoints.map { it.first })
 }
 
 // Тут указывается путь, куда будут сохранены рисунки с графиками
