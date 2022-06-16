@@ -51,4 +51,4 @@ fun main() {
 }
 
 // Тут указывается путь, куда будут сохранены рисунки с графиками
-private const val PATH = "/Users/a19689920/Downloads"
+private const val PATH = ""
